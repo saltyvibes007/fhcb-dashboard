@@ -124,9 +124,23 @@ table .negative{color:#ef4444;}
 @media(max-width:900px){
   .kpi-row{grid-template-columns:1fr 1fr;}
   .two-col,.three-col{grid-template-columns:1fr;}
-  nav{padding:0 20px;}
-  .page{padding:20px;}
-  .nav-tab{padding:16px 14px;font-size:12px;}
+  nav{padding:0 12px;flex-wrap:wrap;}
+  .nav-brand{margin-right:auto;width:100%;padding:12px 0 4px;}
+  .nav-tabs{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .nav-date{display:none;}
+  .page{padding:16px;}
+  .nav-tab{padding:12px 14px;font-size:11px;white-space:nowrap;}
+  .page-header h1{font-size:22px;}
+  table{font-size:12px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table th,table td{padding:8px 10px;white-space:nowrap;}
+  .card{padding:20px;}
+  .kpi{padding:16px;}
+  .kpi .kpi-value{font-size:24px;}
+  .login-box{width:90%;padding:32px 24px;}
+}
+@media(max-width:500px){
+  .kpi-row{grid-template-columns:1fr;}
+  .three-col{grid-template-columns:1fr;}
 }
 </style>
 </head>
