@@ -9,7 +9,8 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-body{font-family:'Inter',sans-serif;background:#0f1117;color:#e2e8f0;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:#0f1117;color:#e2e8f0;overflow-x:hidden;width:100%;max-width:100vw;}
+html{overflow-x:hidden;width:100%;}
 
 /* LOGIN */
 #login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0f1117 0%,#1a1d2e 50%,#0f1117 100%);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.5s;}
@@ -38,7 +39,7 @@ nav{background:rgba(15,17,23,0.95);border-bottom:1px solid rgba(255,255,255,0.06
 .nav-date{margin-left:auto;font-size:12px;color:rgba(255,255,255,0.25);font-weight:500;}
 
 /* PAGE */
-.page{display:none;padding:32px 40px 80px;max-width:1400px;margin:0 auto;animation:fadeIn 0.3s;}
+.page{display:none;padding:32px 40px 80px;max-width:1400px;margin:0 auto;animation:fadeIn 0.3s;overflow-x:hidden;}
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
@@ -257,20 +258,20 @@ table .negative{color:#ef4444;}
     <div class="card">
       <h3>Registration Growth — 3 Year Trend</h3>
       <div class="card-sub">January-February collections (primary revenue driver)</div>
-      <div style="display:flex;height:200px;align-items:flex-end;gap:24px;padding:20px 40px 0;justify-content:center;">
-        <div style="text-align:center;">
+      <div style="display:flex;height:200px;align-items:flex-end;gap:12px;padding:20px 10px 0;justify-content:center;">
+        <div style="text-align:center;flex:1;max-width:100px;">
           <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.4);margin-bottom:8px;">$46K</div>
-          <div style="width:80px;height:120px;background:linear-gradient(180deg,rgba(59,130,246,0.3),rgba(59,130,246,0.1));border-radius:8px 8px 0 0;border:1px solid rgba(59,130,246,0.2);"></div>
+          <div style="width:100%;height:120px;background:linear-gradient(180deg,rgba(59,130,246,0.3),rgba(59,130,246,0.1));border-radius:8px 8px 0 0;border:1px solid rgba(59,130,246,0.2);"></div>
           <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);margin-top:8px;">2024</div>
         </div>
-        <div style="text-align:center;">
+        <div style="text-align:center;flex:1;max-width:100px;">
           <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:8px;">$48K</div>
-          <div style="width:80px;height:134px;background:linear-gradient(180deg,rgba(59,130,246,0.5),rgba(59,130,246,0.2));border-radius:8px 8px 0 0;border:1px solid rgba(59,130,246,0.3);"></div>
+          <div style="width:100%;height:134px;background:linear-gradient(180deg,rgba(59,130,246,0.5),rgba(59,130,246,0.2));border-radius:8px 8px 0 0;border:1px solid rgba(59,130,246,0.3);"></div>
           <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.5);margin-top:8px;">2025</div>
         </div>
-        <div style="text-align:center;">
+        <div style="text-align:center;flex:1;max-width:100px;">
           <div style="font-size:14px;font-weight:800;color:#60a5fa;margin-bottom:8px;">$56K</div>
-          <div style="width:80px;height:170px;background:linear-gradient(180deg,#3b82f6,#2563eb);border-radius:8px 8px 0 0;box-shadow:0 0 20px rgba(59,130,246,0.3);"></div>
+          <div style="width:100%;height:170px;background:linear-gradient(180deg,#3b82f6,#2563eb);border-radius:8px 8px 0 0;box-shadow:0 0 20px rgba(59,130,246,0.3);"></div>
           <div style="font-size:13px;font-weight:700;color:#60a5fa;margin-top:8px;">2026</div>
         </div>
       </div>
