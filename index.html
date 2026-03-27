@@ -149,7 +149,8 @@ table .negative{color:#ef4444;}
 <nav>
   <div class="nav-brand">FHCB Finance</div>
   <div class="nav-tabs">
-    <div class="nav-tab active" onclick="showPage('snapshot',this)">Snapshot</div>
+    <div class="nav-tab active" onclick="showPage('ceo',this)">Summary</div>
+    <div class="nav-tab" onclick="showPage('snapshot',this)">Financials</div>
     <div class="nav-tab" onclick="showPage('seasonal',this)">Seasonal Trends</div>
     <div class="nav-tab" onclick="showPage('forecast',this)">2026 Forecast</div>
     <div class="nav-tab" onclick="showPage('insights',this)">Insights</div>
@@ -157,8 +158,200 @@ table .negative{color:#ef4444;}
   <div class="nav-date">Data through Feb 28, 2026 · Confidential</div>
 </nav>
 
+<!-- ========== PAGE 0: CEO SUMMARY ========== -->
+<div class="page active" id="page-ceo">
+  <div class="page-header">
+    <h1>Executive Summary</h1>
+    <p>Fair Haven Community Baseball Inc. · As of March 25, 2026</p>
+  </div>
+
+  <!-- BIG 3 -->
+  <div class="three-col" style="margin-bottom:32px;">
+    <div style="background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(34,197,94,0.03));border:1px solid rgba(34,197,94,0.2);border-radius:16px;padding:32px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;color:rgba(34,197,94,0.6);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Cash on Hand</div>
+      <div style="font-size:48px;font-weight:900;color:#22c55e;letter-spacing:-2px;">$93K</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:8px;">TD Bank $90,127 + Venmo $2,986</div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(34,197,94,0.15);">
+        <div style="font-size:24px;font-weight:800;color:#22c55e;">+660%</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);">vs Jan 2024 ($12K)</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(59,130,246,0.03));border:1px solid rgba(59,130,246,0.2);border-radius:16px;padding:32px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;color:rgba(59,130,246,0.6);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">YTD Revenue</div>
+      <div style="font-size:48px;font-weight:900;color:#60a5fa;letter-spacing:-2px;">$70K</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:8px;">Registration + Sponsorships + Fundraising</div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(59,130,246,0.15);">
+        <div style="font-size:24px;font-weight:800;color:#60a5fa;">+15%</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);">vs same period last year</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(245,158,11,0.03));border:1px solid rgba(245,158,11,0.2);border-radius:16px;padding:32px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;color:rgba(245,158,11,0.6);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Cooperstown Liability</div>
+      <div style="font-size:48px;font-weight:900;color:#f59e0b;letter-spacing:-2px;">$3.7K</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:8px;">Restricted funds owed to 12U trip</div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(245,158,11,0.15);">
+        <div style="font-size:24px;font-weight:800;color:#f59e0b;">$5.9K raised</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);">$2.1K paid as prizes = $3.7K net</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHERE THE MONEY COMES FROM -->
+  <div class="two-col" style="margin-bottom:24px;">
+    <div class="card">
+      <h3>Where Revenue Comes From</h3>
+      <div class="card-sub">YTD 2026 — $70K total</div>
+      <div style="margin:16px 0;">
+        <div style="display:flex;align-items:center;margin:10px 0;">
+          <div style="width:140px;font-size:13px;color:rgba(255,255,255,0.5);">Registration</div>
+          <div style="flex:1;height:32px;background:rgba(255,255,255,0.03);border-radius:6px;overflow:hidden;">
+            <div style="width:86%;height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:12px;font-weight:700;color:#fff;">$60,338</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin:10px 0;">
+          <div style="width:140px;font-size:13px;color:rgba(255,255,255,0.5);">Sponsorships</div>
+          <div style="flex:1;height:32px;background:rgba(255,255,255,0.03);border-radius:6px;overflow:hidden;">
+            <div style="width:3.5%;height:100%;background:linear-gradient(90deg,#3b82f6,#2563eb);border-radius:6px;min-width:60px;display:flex;align-items:center;padding:0 12px;font-size:12px;font-weight:700;color:#fff;">$2,440</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin:10px 0;">
+          <div style="width:140px;font-size:13px;color:rgba(255,255,255,0.5);">Fundraising 🏈🏀</div>
+          <div style="flex:1;height:32px;background:rgba(255,255,255,0.03);border-radius:6px;overflow:hidden;">
+            <div style="width:7%;height:100%;background:linear-gradient(90deg,#f59e0b,#d97706);border-radius:6px;min-width:60px;display:flex;align-items:center;padding:0 12px;font-size:12px;font-weight:700;color:#fff;">$4,911</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin:10px 0;">
+          <div style="width:140px;font-size:13px;color:rgba(255,255,255,0.5);">Merch & Clinics</div>
+          <div style="flex:1;height:32px;background:rgba(255,255,255,0.03);border-radius:6px;overflow:hidden;">
+            <div style="width:1.5%;height:100%;background:linear-gradient(90deg,#a855f7,#7c3aed);border-radius:6px;min-width:60px;display:flex;align-items:center;padding:0 12px;font-size:12px;font-weight:700;color:#fff;">$1,038</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin:10px 0;">
+          <div style="width:140px;font-size:13px;color:rgba(255,255,255,0.5);">Other</div>
+          <div style="flex:1;height:32px;background:rgba(255,255,255,0.03);border-radius:6px;overflow:hidden;">
+            <div style="width:2%;height:100%;background:linear-gradient(90deg,#6b7280,#4b5563);border-radius:6px;min-width:60px;display:flex;align-items:center;padding:0 12px;font-size:12px;font-weight:700;color:#fff;">$1,229</div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.25);margin-top:8px;">86% of revenue from registration. Sponsorships and fundraising are new growth areas.</p>
+    </div>
+
+    <div class="card">
+      <h3>Registration Growth — 3 Year Trend</h3>
+      <div class="card-sub">January-February collections (primary revenue driver)</div>
+      <div style="display:flex;height:200px;align-items:flex-end;gap:24px;padding:20px 40px 0;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.4);margin-bottom:8px;">$46K</div>
+          <div style="width:80px;height:120px;background:linear-gradient(180deg,rgba(59,130,246,0.3),rgba(59,130,246,0.1));border-radius:8px 8px 0 0;border:1px solid rgba(59,130,246,0.2);"></div>
+          <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);margin-top:8px;">2024</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:8px;">$48K</div>
+          <div style="width:80px;height:134px;background:linear-gradient(180deg,rgba(59,130,246,0.5),rgba(59,130,246,0.2));border-radius:8px 8px 0 0;border:1px solid rgba(59,130,246,0.3);"></div>
+          <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.5);margin-top:8px;">2025</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:14px;font-weight:800;color:#60a5fa;margin-bottom:8px;">$56K</div>
+          <div style="width:80px;height:170px;background:linear-gradient(180deg,#3b82f6,#2563eb);border-radius:8px 8px 0 0;box-shadow:0 0 20px rgba(59,130,246,0.3);"></div>
+          <div style="font-size:13px;font-weight:700;color:#60a5fa;margin-top:8px;">2026</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <span style="font-size:24px;font-weight:800;color:#22c55e;">+11% CAGR</span>
+        <div style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:4px;">Consistent year-over-year growth in participation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASH RUNWAY -->
+  <div class="card" style="margin-bottom:24px;">
+    <h3>Cash Runway & Seasonality</h3>
+    <div class="card-sub">How the operating cycle works — and why the org is in strong shape</div>
+    <div style="display:flex;gap:0;margin:24px 0 16px;align-items:stretch;">
+      <div style="flex:1;background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(34,197,94,0.04));padding:20px;border-radius:12px 0 0 12px;border:1px solid rgba(34,197,94,0.15);text-align:center;">
+        <div style="font-size:28px;">💰</div>
+        <div style="font-size:13px;font-weight:700;color:#22c55e;margin:8px 0 4px;">JAN-FEB</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Registration floods in</div>
+        <div style="font-size:20px;font-weight:800;color:#22c55e;margin-top:8px;">+$55K</div>
+      </div>
+      <div style="flex:1;background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(59,130,246,0.04));padding:20px;border:1px solid rgba(59,130,246,0.15);text-align:center;">
+        <div style="font-size:28px;">🔧</div>
+        <div style="font-size:13px;font-weight:700;color:#60a5fa;margin:8px 0 4px;">MAR</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Pre-season prep</div>
+        <div style="font-size:20px;font-weight:800;color:#60a5fa;margin-top:8px;">-$1K</div>
+      </div>
+      <div style="flex:1;background:linear-gradient(135deg,rgba(239,68,68,0.12),rgba(239,68,68,0.04));padding:20px;border:1px solid rgba(239,68,68,0.15);text-align:center;">
+        <div style="font-size:28px;">💸</div>
+        <div style="font-size:13px;font-weight:700;color:#ef4444;margin:8px 0 4px;">APR-MAY</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Uniforms + League Dues</div>
+        <div style="font-size:20px;font-weight:800;color:#ef4444;margin-top:8px;">-$30K</div>
+      </div>
+      <div style="flex:1;background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));padding:20px;border:1px solid rgba(255,255,255,0.06);text-align:center;">
+        <div style="font-size:28px;">⚾</div>
+        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.5);margin:8px 0 4px;">JUN-DEC</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Season play + offseason</div>
+        <div style="font-size:20px;font-weight:800;color:rgba(255,255,255,0.5);margin-top:8px;">-$12K</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:16px;">
+      <div style="flex:1;background:rgba(255,255,255,0.03);border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.06);">
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Cash Runway</div>
+        <div style="font-size:28px;font-weight:800;color:#fff;">23+ months</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);">at current expense rate</div>
+      </div>
+      <div style="flex:1;background:rgba(255,255,255,0.03);border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.06);">
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Projected Low Point</div>
+        <div style="font-size:28px;font-weight:800;color:#fff;">~$52K</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);">December 2026</div>
+      </div>
+      <div style="flex:1;background:rgba(255,255,255,0.03);border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.06);">
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Interest Lost</div>
+        <div style="font-size:28px;font-weight:800;color:#ef4444;">$3.6K/yr</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);">0% APY on idle cash</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP 3 ACTIONS -->
+  <div class="card">
+    <h3>Top 3 Actions for the Board</h3>
+    <div class="card-sub">Ranked by financial impact</div>
+    <div style="display:flex;gap:16px;margin-top:16px;">
+      <div style="flex:1;background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.02));border:1px solid rgba(34,197,94,0.15);border-radius:12px;padding:24px;">
+        <div style="font-size:32px;margin-bottom:12px;">🏦</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Open a Savings Account</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:12px;">$90K+ earning 0% interest. A high-yield business savings at 4% APY = free money.</div>
+        <div style="background:rgba(34,197,94,0.15);color:#22c55e;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;">+$3,600/year</div>
+      </div>
+      <div style="flex:1;background:linear-gradient(135deg,rgba(59,130,246,0.08),rgba(59,130,246,0.02));border:1px solid rgba(59,130,246,0.15);border-radius:12px;padding:24px;">
+        <div style="font-size:32px;margin-bottom:12px;">👕</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Bid Out Uniforms</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:12px;">Athletes Alley has gotten $37K over 2 years. Get 3 competing quotes before the April order.</div>
+        <div style="background:rgba(59,130,246,0.15);color:#60a5fa;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;">Save $1.5-2.5K/year</div>
+      </div>
+      <div style="flex:1;background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(245,158,11,0.02));border:1px solid rgba(245,158,11,0.15);border-radius:12px;padding:24px;">
+        <div style="font-size:32px;margin-bottom:12px;">🏢</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Scale Sponsorships</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:12px;">Already $2,440 from 5 sponsors in Q1. A formal program with pricing tiers could double this.</div>
+        <div style="background:rgba(245,158,11,0.15);color:#f59e0b;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;">+$3-8K/year</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEALTH SCORE -->
+  <div style="background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.02));border:1px solid rgba(34,197,94,0.15);border-radius:16px;padding:32px;text-align:center;margin-top:24px;">
+    <div style="font-size:11px;font-weight:700;color:rgba(34,197,94,0.5);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;">Overall Financial Health</div>
+    <div style="font-size:64px;font-weight:900;color:#22c55e;letter-spacing:-2px;">STRONG</div>
+    <div style="font-size:14px;color:rgba(255,255,255,0.4);margin-top:8px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6;">
+      23+ months of cash runway. Revenue growing 11% annually. No debt. The program is well-run and accumulating surplus. Primary opportunities are earning interest on idle cash and diversifying revenue beyond registration.
+    </div>
+  </div>
+
+  <div class="disclaimer">Prepared for board-level review · Data through March 25, 2026 · TD Bank + Venmo reconciled · Confidential</div>
+</div>
+
 <!-- ========== PAGE 1: SNAPSHOT ========== -->
-<div class="page active" id="page-snapshot">
+<div class="page" id="page-snapshot">
   <div class="page-header">
     <h1>Financial Snapshot</h1>
     <p>As of March 1, 2026 · Fair Haven Community Baseball Inc.</p>
