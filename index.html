@@ -1027,6 +1027,8 @@ table .negative{color:#ef4444;}
 
   <div id="chat-messages" style="flex:1;overflow-y:auto;padding:16px;display:none;">
     <div id="msgs"></div>
+    <div id="prompt-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+    </div>
   </div>
 
   <div id="chat-input-area" style="padding:12px 16px;border-top:1px solid rgba(255,255,255,0.06);display:none;">
@@ -1118,6 +1120,59 @@ KEY RECOMMENDATIONS:
 Keep answers concise, use numbers from the data, and be helpful. If asked something not in the data, say so.`;
 
 let chatHistory = [];
+let currentTab = 'ceo';
+
+const PROMPT_CHIPS = {
+  ceo: [
+    {icon:'💊', label:'Cash health check', prompt:'Based on our current cash position and burn rate, how many months of runway do we have? What is the minimum cash reserve we should maintain?'},
+    {icon:'📊', label:'Year-over-year comparison', prompt:'Compare our financial performance this year vs last year. Are we growing? Where are we improving and where are we slipping?'},
+    {icon:'📋', label:'60-second board summary', prompt:'Give me a 5-bullet executive summary I can read to the board in 60 seconds. Hit the most important numbers and one thing that needs attention.'},
+    {icon:'💰', label:'What should we do with surplus cash?', prompt:'We have $90K in cash and only need about $50K to operate. What should we do with the surplus $40K? Give me 3 options ranked by impact on the program.'},
+  ],
+  snapshot: [
+    {icon:'🔍', label:'Top 5 expenses deep-dive', prompt:'What are our top 5 expenses by dollar amount? For each one, tell me if it is growing, shrinking, or flat vs prior year. Flag anything that looks abnormal.'},
+    {icon:'⚠️', label:'Revenue concentration risk', prompt:'How dependent are we on a single revenue source? What happens to our P&L if registration drops 20% next year? What is our breakeven?'},
+    {icon:'🏪', label:'Vendor audit', prompt:'List every vendor we have paid more than $1,000 to in the last 12 months. For the top 3, have costs gone up year over year? Should we be getting competitive bids?'},
+    {icon:'💸', label:'Find hidden recurring costs', prompt:'Find all recurring monthly or annual charges. Calculate the total annual cost of subscriptions and recurring fees. Which ones can we cut without impacting operations?'},
+    {icon:'📝', label:'Tax compliance check', prompt:'As a 501(c)(3), what financial reporting do we owe the IRS? Based on our revenue level, do we need to file a Form 990 or 990-EZ? What is the deadline?'},
+  ],
+  seasonal: [
+    {icon:'📉', label:'Cash crunch predictor', prompt:'Based on our seasonal pattern, when is our lowest cash point each year? How much cash do we need going into Q2 to survive the uniform and league dues payments?'},
+    {icon:'🔮', label:'Predict next year registration', prompt:'Based on 3 years of registration data, predict next January-February registration revenue. Give me a bear case, base case, and bull case.'},
+    {icon:'❄️', label:'Fix the off-season drain', prompt:'We lose money every month from June through December. What is the total off-season drain? What would it take to break even in Q3-Q4 through fundraising or sponsorships?'},
+  ],
+  forecast: [
+    {icon:'🔥', label:'Stress test the forecast', prompt:'What happens to our year-end cash if uniforms cost 15% more than budgeted AND league dues go up 10%? Show me the stress scenario.'},
+    {icon:'📈', label:'Model adding a travel team', prompt:'If we add a fall travel team and it brings in $8,000 in revenue but costs $5,000 to run, how does that change our full-year P&L and cash position?'},
+    {icon:'🎯', label:'Fundraising ROI', prompt:'Our Super Bowl pool raised $5,859 and cost us $2,125 in prizes. What was the ROI? If we run 4 similar fundraisers per year, what is the projected annual impact?'},
+    {icon:'🏢', label:'Size the sponsorship opportunity', prompt:'We have 5 sponsors paying $200-$650 each. If we formalized a sponsorship program with 3 tiers and targeted 15 local businesses, what is the realistic revenue potential? Draft the tier structure.'},
+  ],
+  insights: [
+    {icon:'💡', label:'Capital allocation advice', prompt:'We have $90K in cash and only need about $50K to operate. What should we do with the surplus $40K? Give me 3 options ranked by impact on the program.'},
+    {icon:'🏗️', label:'Build a sponsorship deck', prompt:'Draft a sponsorship program with 3 tiers for local businesses. Include tier names, pricing, what each sponsor gets, and a target number of sponsors per tier.'},
+    {icon:'📊', label:'Benchmark us vs similar orgs', prompt:'How does our financial profile compare to a typical youth baseball organization of similar size? Are we spending too much or too little in any category?'},
+    {icon:'🚀', label:'Revenue diversification plan', prompt:'86% of our revenue comes from registration. Give me a concrete plan to get non-registration revenue to 30% within 2 years. What programs, events, or revenue streams should we launch?'},
+  ]
+};
+
+function renderChips() {
+  const container = document.getElementById('prompt-chips');
+  if (!container) return;
+  const chips = PROMPT_CHIPS[currentTab] || PROMPT_CHIPS.ceo;
+  container.innerHTML = '<div style="font-size:10px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:1px;width:100%;margin-bottom:4px;">Try asking:</div>' +
+    chips.map(c => 
+      `<div onclick="useChip('${c.prompt.replace(/'/g,"\\'")}')" style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:20px;padding:6px 12px;font-size:11px;color:#60a5fa;cursor:pointer;transition:background 0.2s;white-space:nowrap;" onmouseover="this.style.background='rgba(59,130,246,0.2)'" onmouseout="this.style.background='rgba(59,130,246,0.08)'">${c.icon} ${c.label}</div>`
+    ).join('');
+}
+
+function useChip(prompt) {
+  document.getElementById('chat-input').value = prompt;
+  document.getElementById('prompt-chips').style.display = 'none';
+  sendMsg();
+}
+
+// Override showPage to track current tab
+const _origShowPage = typeof showPage === 'function' ? showPage : null;
 
 function toggleChat() {
   const panel = document.getElementById('chat-panel');
@@ -1130,7 +1185,10 @@ function toggleChat() {
       document.getElementById('chat-setup').style.display = 'none';
       document.getElementById('chat-messages').style.display = 'block';
       document.getElementById('chat-input-area').style.display = 'block';
-      if (chatHistory.length === 0) addBotMsg("Hi! I have all of FHCB's financial data loaded. Ask me anything — cash position, expenses, trends, vendor details, whatever you need. 🧠");
+      if (chatHistory.length === 0) {
+        addBotMsg("Hi! I'm your FHCB financial advisor. I have all your data loaded — ask me anything, or tap a suggestion below to get started. 🧠");
+        renderChips();
+      }
     } else {
       document.getElementById('chat-setup').style.display = 'block';
     }
@@ -1147,7 +1205,8 @@ function saveApiKey() {
   document.getElementById('chat-setup').style.display = 'none';
   document.getElementById('chat-messages').style.display = 'block';
   document.getElementById('chat-input-area').style.display = 'block';
-  addBotMsg("Hi! I have all of FHCB's financial data loaded. Ask me anything — cash position, expenses, trends, vendor details, whatever you need. 🧠");
+  addBotMsg("Hi! I'm your FHCB financial advisor. I have all your data loaded — ask me anything, or tap a suggestion below to get started. 🧠");
+  renderChips();
 }
 
 function addBotMsg(text) {
@@ -1274,6 +1333,8 @@ function showPage(id, el) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   el.classList.add('active');
+  currentTab = id;
+  renderChips();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 </script>
